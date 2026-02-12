@@ -1,1 +1,59 @@
-print("File already changed by the Owner -Gendu")
+local player = game.Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "CenterNotification"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.4, 0, 0.25, 0)
+frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+frame.AnchorPoint = Vector2.new(0.5, 0.5)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 16)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -50, 0.25, 0)
+title.Position = UDim2.new(0, 15, 0, 10)
+title.BackgroundTransparency = 1
+title.Text = "Notification"
+title.TextColor3 = Color3.new(1,1,1)
+title.TextScaled = true
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local message = Instance.new("TextLabel")
+message.Size = UDim2.new(1, -30, 0.4, 0)
+message.Position = UDim2.new(0, 15, 0.35, 0)
+message.BackgroundTransparency = 1
+message.Text = "Script Already Changed by the Owner -Gendu"
+message.TextWrapped = true
+message.TextColor3 = Color3.fromRGB(220,220,220)
+message.TextScaled = true
+message.Font = Enum.Font.Gotham
+message.Parent = frame
+
+local close = Instance.new("TextButton")
+close.Size = UDim2.new(0, 35, 0, 35)
+close.Position = UDim2.new(1, -10, 0, 10)
+close.AnchorPoint = Vector2.new(1, 0)
+close.Text = "X"
+close.TextColor3 = Color3.new(1,1,1)
+close.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+close.Font = Enum.Font.GothamBold
+close.TextScaled = true
+close.Parent = frame
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(1, 0)
+closeCorner.Parent = close
+
+close.Activated:Connect(function()
+    gui:Destroy()
+end)
