@@ -5,6 +5,8 @@ gui.Name = "CenterNotification"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = player:WaitForChild("PlayerGui")
+gui.DisplayOrder = 999999
+gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0.4, 0, 0.25, 0)
