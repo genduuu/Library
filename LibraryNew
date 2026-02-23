@@ -3227,7 +3227,7 @@ function Library:Notify(Text, Time, SoundId)
 
 		pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, 0, 0, YSize), 'Out', 'Quad', 0.4, true);
 
-		task.wait(0.4);
+		task.wait(0.7);
 
 		NotifyOuter:Destroy();
 	end);
