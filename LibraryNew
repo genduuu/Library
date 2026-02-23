@@ -3130,9 +3130,9 @@ function Library:SetWatermark(Text)
 end;
 
 function Library:Notify(Text, Time, SoundId)
-	local XSize, YSize = Library:GetTextBounds(Text, Library.Font, 14);
+	local XSize, YSize = Library:GetTextBounds(Text, Library.Font, 15);
 
-	YSize = YSize + 7
+	YSize = YSize + 10
 
 	local NotifyOuter = Library:Create('Frame', {
 		BorderColor3 = Color3.new(0, 0, 0);
@@ -3189,13 +3189,13 @@ function Library:Notify(Text, Time, SoundId)
 		Size = UDim2.new(1, -4, 1, 0);
 		Text = Text;
 		TextXAlignment = Enum.TextXAlignment.Left;
-		TextSize = 14;
+		TextSize = 15;
 		ZIndex = 103;
 		Parent = InnerFrame;
 	});
 
 	local LeftColor = Library:Create('Frame', {
-		BackgroundColor3 = Library.AccentColor;
+		BackgroundColor3 = Color3.fromRGB(180, 140, 255);
 		BorderSizePixel = 0;
 		Position = UDim2.new(0, -1, 0, -1);
 		Size = UDim2.new(0, 3, 1, 2);
@@ -3216,7 +3216,7 @@ function Library:Notify(Text, Time, SoundId)
 		}):Destroy();
 	end
 
-	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 8 + 4, 0, YSize), 'Out', 'Quad', 0.4, true);
+	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 14 + 6, 0, YSize), 'Out', 'Quad', 0.4, true);
 
 	task.spawn(function()
 		if typeof(Time) == "Instance" then
