@@ -3216,7 +3216,7 @@ function Library:Notify(Text, Time, SoundId)
 		}):Destroy();
 	end
 
-	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 15 + 30, 0, YSize), 'Out', 'Quad', 0.4, true);
+	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 15 + 2, 0, YSize), 'Out', 'Quad', 0.2, true);
 
 	task.spawn(function()
 		if typeof(Time) == "Instance" then
