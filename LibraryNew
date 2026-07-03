@@ -3184,7 +3184,7 @@ function Library:Notify(Text, Time, SoundId)
 		end
 	});
 
-Library.PinnedNotifications = {}
+Library.PinnedNotifications = {};
 function Library:Notify(Text, Time, SoundId, NotifyId, Locked)
 	local XSize, YSize = Library:GetTextBounds(Text, Library.Font, 15);
 
