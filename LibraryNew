@@ -3129,61 +3129,6 @@ function Library:SetWatermark(Text)
 	Library.WatermarkText.Text = Text;
 end;
 
-function Library:Notify(Text, Time, SoundId)
-	local XSize, YSize = Library:GetTextBounds(Text, Library.Font, 15);
-
-	YSize = YSize + 9
-
-	local NotifyOuter = Library:Create('Frame', {
-		BorderColor3 = Color3.new(0, 0, 0);
-		Position = UDim2.new(0, 100, 0, 10);
-		Size = UDim2.new(0, 0, 0, YSize);
-		ClipsDescendants = true;
-		ZIndex = 100;
-		Parent = Library.NotificationArea;
-	});
-
-	local NotifyInner = Library:Create('Frame', {
-		BackgroundColor3 = Library.MainColor;
-		BorderColor3 = Library.OutlineColor;
-		BorderMode = Enum.BorderMode.Inset;
-		Size = UDim2.new(1, 0, 1, 0);
-		ZIndex = 101;
-		Parent = NotifyOuter;
-	});
-
-	Library:AddToRegistry(NotifyInner, {
-		BackgroundColor3 = 'MainColor';
-		BorderColor3 = 'OutlineColor';
-	}, true);
-
-	local InnerFrame = Library:Create('Frame', {
-		BackgroundColor3 = Color3.new(1, 1, 1);
-		BorderSizePixel = 0;
-		Position = UDim2.new(0, 1, 0, 1);
-		Size = UDim2.new(1, -2, 1, -2);
-		ZIndex = 102;
-		Parent = NotifyInner;
-	});
-
-	local Gradient = Library:Create('UIGradient', {
-		Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0, Library:GetDarkerColor(Library.MainColor)),
-			ColorSequenceKeypoint.new(1, Library.MainColor),
-		});
-		Rotation = -90;
-		Parent = InnerFrame;
-	});
-
-	Library:AddToRegistry(Gradient, {
-		Color = function()
-			return ColorSequence.new({
-				ColorSequenceKeypoint.new(0, Library:GetDarkerColor(Library.MainColor)),
-				ColorSequenceKeypoint.new(1, Library.MainColor),
-			});
-		end
-	});
-
 Library.PinnedNotifications = {};
 function Library:Notify(Text, Time, SoundId, NotifyId, Locked)
 	local XSize, YSize = Library:GetTextBounds(Text, Library.Font, 15);
@@ -3199,7 +3144,7 @@ function Library:Notify(Text, Time, SoundId, NotifyId, Locked)
 		Parent = Library.NotificationArea;
 	});
     if NotifyId then
-    	local OldNotify = Library.PinnedNotifications[NotifyId]
+    	local OldNotify = Library.PinnedNotifications[NotifyId];
     
     	if OldNotify and OldNotify.Parent then
     		OldNotify:Destroy();
@@ -3284,19 +3229,19 @@ function Library:Notify(Text, Time, SoundId, NotifyId, Locked)
 
     task.spawn(function()
     	if Locked then
-    		return
-    	end
+    		return;
+    	end;
     	if typeof(Time) == "Instance" then
-    		Time.Destroying:Wait()
+    		Time.Destroying:Wait();
     	else
-    		task.wait(Time or 5)
-    	end
+    		task.wait(Time or 5);
+    	end;
     	if NotifyId and Library.PinnedNotifications[NotifyId] == NotifyOuter then
-    		Library.PinnedNotifications[NotifyId] = nil
-    	end
-    	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, 0, 0, YSize), 'Out', 'Quad', 0.4, true)
-    	task.wait(0.7)
-    	NotifyOuter:Destroy()
+    		Library.PinnedNotifications[NotifyId] = nil;
+    	end;
+    	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, 0, 0, YSize), 'Out', 'Quad', 0.4, true);
+    	task.wait(0.7);
+    	NotifyOuter:Destroy();
     end);
 end;
 
