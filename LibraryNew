@@ -3202,11 +3202,11 @@ function Library:Notify(Text, Time, SoundId, NotifyId, Locked)
     	local OldNotify = Library.PinnedNotifications[NotifyId]
     
     	if OldNotify and OldNotify.Parent then
-    		OldNotify:Destroy()
-    	end
+    		OldNotify:Destroy();
+    	end;
     
-    	Library.PinnedNotifications[NotifyId] = NotifyOuter
-    end
+    	Library.PinnedNotifications[NotifyId] = NotifyOuter;
+    end;
 	local NotifyInner = Library:Create('Frame', {
 		BackgroundColor3 = Library.MainColor;
 		BorderColor3 = Library.OutlineColor;
